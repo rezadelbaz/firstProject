@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import TodoApp from './components/TodoApp';
  const App = () => {
    return ( 
-     <div className="test">
+     <div className="App">
        <h1>todo list App - Reza</h1>
-       <h2>todo list App - Reza</h2>
+       <TodoApp />
      </div>
     );
  }
