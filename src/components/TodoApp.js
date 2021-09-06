@@ -1,9 +1,11 @@
 import { useState } from "react";
+import NavBar from "./Navabr";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
+  const [filterTodos, setFilterTodos] = useState([]);
 
   const addTodo = (input) => {
     const newTodo = {
@@ -40,8 +42,28 @@ const TodoApp = () => {
     updatedTodos[index] = selectedTodo;
     setTodos(updatedTodos);
   };
+
+  const filterTodo = (Status) => {
+    switch (Status) {
+      case "All":
+        setFilterTodos(todos);
+        break;
+      case "completed":
+        setFilterTodos(todos.filter((t) => t.isCompleted));
+        break;
+      case "unCompleted":
+        setFilterTodos(todos.filter((t) => !t.isCompleted));
+        break;
+      default:
+        setFilterTodos();
+    }
+  };
   return (
     <div className="container">
+      <NavBar
+        upCompletedTodos={todos.filter((t) => !t.isCompleted).length}
+        filterTodos={filterTodo}
+      />
       <TodoForm addTodoHandler={addTodo} />
       <TodoList
         todos={todos}
