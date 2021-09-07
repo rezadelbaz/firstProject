@@ -6,11 +6,11 @@ import TodoList from "./TodoList";
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
   const [filterdTodos, setFilterTodos] = useState([]);
-  const [Status, setStatus] = useState("All");
+  const [selectsedOptions, setSelectsedOptions] = useState("All");
 
   useEffect(() => {
-    filterTodos(Status);
-  }, [todos, Status]);
+    filterTodos(selectsedOptions);
+  }, [todos, selectsedOptions]);
 
   const addTodo = (input) => {
     const newTodo = {
@@ -49,7 +49,7 @@ const TodoApp = () => {
   };
 
   const selectHandler = (e) => {
-    setStatus(e.target.value);
+    setSelectsedOptions(e.value);
     // filterTodos(e.target.value);
   };
 
@@ -73,7 +73,7 @@ const TodoApp = () => {
       <NavBar
         upCompletedTodos={todos.filter((t) => !t.isCompleted).length}
         onChange={selectHandler}
-        Status={Status}
+        selectsedOptions={selectsedOptions}
       />
       <TodoForm addTodoHandler={addTodo} />
       <TodoList
